@@ -1,9 +1,11 @@
-auri = Character.create(name: Auri, description: "mysterious girl who lives underground")
+jennianelson = User.create(username: "smallsy", email: "smallsy@gmail.com", password: "smallsypassword")
 
-jennianelson = User.create(username: "jennianelson")
+jennianelson_characters = jennianelson.characters.create([
+  {name: "Auri", description: "Kvothe's friend who lives underground", book:"Kingskiller Chronicles"}, {name: "Dumbledore", description: "master wizard and headmaster of Hogwarts", book: "Harry Potter Series"}, {name: "Smeagol, A.K.A. Gollum", description: "Man who found The One Ring, giving him unnaturally long life in the caverns underground", book: "The Hobbit, The Lord of the Rings"}
+  ])
 
-# 
-# user2 = User.create(username: "JnelSmalls", email: "jnelsmalls@gmail.com", password: "coffeecup")
-# user2_tweets = user2.tweets.create([
-#   {content: "Sitting at @Startbucks on Wednesday afternoon"}, {content: "Larges's head is blocking everything in front of me."}
-#   ])
+larges = User.create(username: "larges", email: "larges@gmail.com", password: "largespassword")
+
+larges_characters = larges.characters.create([
+  {name: "Darth Vader", description: "The emperor's muscle", book: "Star Wars"}, {name: "Dean Moriarity", description: "friend of Sal Paradise", book: "On the Road"}
+  ])
