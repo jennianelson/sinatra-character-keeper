@@ -11,18 +11,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171020192805) do
+ActiveRecord::Schema.define(version: 20171020165839) do
 
   create_table "character_traits", force: :cascade do |t|
-    t.integer "character_ids"
-    t.integer "trait_ids"
+    t.integer "character_id"
+    t.integer "trait_id"
   end
 
   create_table "characters", force: :cascade do |t|
     t.string  "name"
     t.string  "description"
-    t.integer "user_id"
     t.string  "book"
+    t.integer "user_id"
   end
 
   create_table "traits", force: :cascade do |t|
