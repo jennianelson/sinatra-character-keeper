@@ -11,24 +11,27 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171020162654) do
+ActiveRecord::Schema.define(version: 20171020165839) do
 
-  create_table "books", force: :cascade do |t|
-    t.string "name"
+  create_table "character_traits", force: :cascade do |t|
+    t.integer "character_ids"
+    t.integer "trait_ids"
   end
 
   create_table "characters", force: :cascade do |t|
-    t.string "name"
-    t.string "description"
-  end
-
-  create_table "characters_traits", id: false, force: :cascade do |t|
-    t.integer "character_id", null: false
-    t.integer "trait_id",     null: false
+    t.string  "name"
+    t.string  "description"
+    t.integer "user_id"
   end
 
   create_table "traits", force: :cascade do |t|
     t.string "name"
+  end
+
+  create_table "users", force: :cascade do |t|
+    t.string "username"
+    t.string "email"
+    t.string "password_digest"
   end
 
 end
