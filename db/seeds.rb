@@ -13,3 +13,5 @@ larges_characters = larges.characters.create([
   traits = Trait.create([
     {name: "villainous"}, {name: "humorous"}, {name: "wise"}, {name: "quirky"}, {name: "courageous"}, {name: "devious"}, {name: "clever"}, {name: "determined"}, {name: "lethal"}, {name: "resourceful"}
     ])
+
+  
