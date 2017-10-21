@@ -2,7 +2,8 @@ class UsersController < ApplicationController
 
   get '/login' do
     if logged_in?
-      redirect '/characters'
+      @user = User.find_by(session[:user_id])
+      redirect "/users/#{@user.slug}"
     end
     erb :'/users/login'
   end
@@ -11,7 +12,7 @@ class UsersController < ApplicationController
     @user = User.find_by(username: params[:username])
     if @user && @user.authenticate(params[:password])
       session[:user_id] = @user.id
-      redirect '/characters'
+      redirect "/users/#{@user.slug}"
     end
       flash[:message] = "We could not find an account associated with this username.  Try again or create an account."
       redirect '/login'
@@ -45,6 +46,12 @@ class UsersController < ApplicationController
     login_check
     session.clear
     redirect '/'
+  end
+
+  get '/users/:slug' do
+    login_check
+    @user = User.find(session[:user_id])
+    erb :'users/show'
   end
 
 end

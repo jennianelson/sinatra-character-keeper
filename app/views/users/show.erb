@@ -1,0 +1,13 @@
+<h1><%=@user.username.capitalize%>'s Saved Characters</h1>
+<br>
+<%@user.characters.each do |character|%>
+  <h2><%=character.name%></h2>
+  <p><b>Book/Series: </b><i><%=character.book%></i></p>
+  <p><b>Description: </b><%=character.description%></p>
+  <p><b>Traits:</b></b>
+  <%character.traits.each do |trait|%>
+    <p> - <%=trait.name%></p>
+  <%end%>
+  <p><a href="/characters/<%=character.slug%>">Edit or delete <%=character.name%></a></p>
+<%end%>
+<br>
