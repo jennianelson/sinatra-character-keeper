@@ -1,0 +1,15 @@
+<h1>Add a New Character</h1>
+<br>
+<form action="/characters" method="post">
+  <p>Name: <input type="text" name="character[name]"></p>
+  <p>Title of Book or Series: <input type="text" name="character[book]"></p>
+  <p>Brief Description: <input type="text" name="character[description]"></p>
+  <p>Choose or Add Character Traits:</p>
+  <%Trait.all.each do |trait| %>
+    <p><input type="checkbox" name="trait_ids[]" value="<%=trait.id%>"> <%=trait.name%></p>
+    <%end%>
+  <p>New Trait: <input type="text" name="traits[]"></p>
+  <p>New Trait: <input type="text" name="traits[]"></p>
+  <input type="submit" name="submit" value="Create Character">
+
+</form>
