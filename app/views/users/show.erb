@@ -1,6 +1,7 @@
 <h1><%=@user.username.capitalize%>'s Saved Characters</h1>
+<p><a href="/characters/new">Add a new character</a></p>
 <br>
-<%@user.characters.each do |character|%>
+<%@sorted_characters.each do |character|%>
   <h2><%=character.name%></h2>
   <p><b>Book/Series: </b><i><%=character.book%></i></p>
   <p><b>Description: </b><%=character.description%></p>
@@ -8,6 +9,10 @@
   <%character.traits.each do |trait|%>
     <p> - <%=trait.name%></p>
   <%end%>
-  <p><a href="/characters/<%=character.slug%>">Edit or delete <%=character.name%></a></p>
+  <p><a href="/characters/<%=character.slug%>/edit">Edit</a></p>
+  <form action="/characters/<%=character.slug%>/delete" method="post">
+    <input type="hidden" name="_method" value="delete">
+    <input type="submit" name="submit" value="Delete Character">
+  </form><br>
 <%end%>
 <br>

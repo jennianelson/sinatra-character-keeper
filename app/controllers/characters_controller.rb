@@ -25,6 +25,7 @@ class CharactersController < ApplicationController
     else
       flash[:message] = "All fields marked with an * are required to create a character."
     end
+    redirect "/characters/#{@character.slug}"
   end
 
   get '/characters' do
@@ -65,6 +66,13 @@ class CharactersController < ApplicationController
       flash[:message] = "All fields marked with an * are required to update a character."
     end
     redirect "/characters/#{@character.slug}"
+  end
+
+  delete '/characters/:slug/delete' do
+    login_check
+    @character = Character.find_by_slug(params[:slug])
+    @character.destroy
+    erb :'/characters/delete'
   end
 
 

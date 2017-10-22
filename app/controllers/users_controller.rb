@@ -52,6 +52,7 @@ class UsersController < ApplicationController
   get '/users/:slug' do
     login_check
     @user = User.find(session[:user_id])
+    @sorted_characters = @user.characters.sort_by {|c| c.name}
     erb :'users/show'
   end
 
