@@ -1,0 +1,11 @@
+<h1>All Characters Organized By Traits</h1>
+<p>Click on a character to read more about them.</p>
+<ul>
+<%@sorted_traits.each do |trait|%>
+  <h3><%=trait.name%></h3>
+  <%trait.characters.each do |character|%>
+    <li> <a href="/characters/<%=character.slug%>"><%=character.name%></a> </li>
+    <%end%>
+    <br>
+  <%end%>
+</ul>

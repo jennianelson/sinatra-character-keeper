@@ -8,4 +8,4 @@ use Rack::MethodOverride
 run ApplicationController
 use UsersController
 use CharactersController
-ise TraitsController
+use TraitsController
