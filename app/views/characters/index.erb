@@ -1,13 +1,8 @@
-<h1>Characters in Character Keeper</h1>
+<h1></a>Characters in Character Keeper</h1>
 <br>
-<%Character.all.each do |character|%>
+<%@sorted_characters.each do |character|%>
 <h2><%=character.name%></h2>
 <p><b>Book or Series: </b><i><%=character.book%></i></p>
-<p><b>Brief description: </b><%=character.description%></p>
-  <b>Traits: </b>
-  <%character.traits.each do |trait|%>
-    <li><%=trait.name%></li>
-  <%end%>
-  <br>
+<p><a href="/characters/<%=character.slug%>">more</a></p>
   <br>
 <%end%>

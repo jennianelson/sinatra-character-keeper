@@ -20,24 +20,25 @@ class UsersController < ApplicationController
 
   get '/signup' do
     if logged_in?
-      redirect '/characters'
+      user = User.find(session[:user_id])
+      redirect "/users/#{user.slug}"
     end
     erb :'/users/signup'
   end
 
   post '/signup' do
     if User.find_by(username: params[:user][:username])
-      flash[:message] = "There is already an account associated with this username. Try logging in."
-      redirect '/'
+      flash[:message] = "There is already an account associated with this username. If it's you, log in instead. Otherwise, pick a different username."
+      redirect '/signup'
     end
     @user = User.new(params[:user])
     @user.password_confirmation = params[:confirm_password]
     if @user.valid?
       @user.save
       session[:user_id] = @user.id
-      redirect '/characters'
+      redirect "/users/#{@user.slug}"
     else
-      flash[:message] = "Your username and password do not match."
+      flash[:message] = "There was an error creating your account. Be sure that you complete all fields and that you confirm your password correctly."
       redirect '/signup'
     end
   end
