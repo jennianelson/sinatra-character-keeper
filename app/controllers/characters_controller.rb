@@ -40,5 +40,11 @@ class CharactersController < ApplicationController
     erb :'characters/show'
   end
 
+  get '/characters/:slug/edit' do
+    login_check
+    @character = Character.find_by_slug(params[:slug])
+    erb :'characters/edit'
+  end
+
 
 end

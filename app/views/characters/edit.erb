@@ -1,0 +1,16 @@
+<h1>Edit <%=@character.name%></h1>
+<br>
+<form action="/characters/<%=@character.slug%>" method="post">
+  <input type="hidden" name="_method" value="patch">
+  <p>Name: <input type="text" name="character[name]" value="<%=@character.name%>"></p>
+  <p>Title of Book or Series: <input type="text" name="character[book]" value="<%=@character.book%>"></p>
+  <p>Brief Description: <input type="text" name="character[description]" value="<%=@character.description%>"></p>
+  <p>Choose or Add Character Traits:</p>
+  <%Trait.all.each do |trait| %>
+    <p><input type="checkbox" name="trait_ids[]" value="<%=trait.id%>" <%='checked' if @character.traits.include?(trait)%>> <%=trait.name%></p>
+    <%end%>
+  <p>New Trait: <input type="text" name="traits[]"></p>
+  <p>New Trait: <input type="text" name="traits[]"></p>
+  <input type="submit" name="submit" value="Edit Character">
+
+</form>
