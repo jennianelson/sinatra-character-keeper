@@ -15,8 +15,11 @@
 </head>
 <body>
   <div class="navigation">
-    <a href="/logout">Logout</a><br>
-    <a href="/characters">All Characters</a>
+    <%if logged_in?%>
+      <a href="/users/:slug">Your Characters</a><br>
+      <a href="/characters">All Characters</a><br>
+      <a href="/logout">Logout</a>
+    <%end%>
   </div>
   <div class="wrapper">
 
