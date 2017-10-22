@@ -23,7 +23,7 @@ class CharactersController < ApplicationController
       end
       @character.save
     else
-      flash[:message] = "All fields are required to create a character."
+      flash[:message] = "All fields marked with an * are required to create a character."
     end
   end
 
@@ -36,6 +36,7 @@ class CharactersController < ApplicationController
 
   get '/characters/:slug' do
     login_check
+    @user = User.find(session[:user_id])
     @character = Character.find_by_slug(params[:slug])
     erb :'characters/show'
   end
@@ -44,6 +45,26 @@ class CharactersController < ApplicationController
     login_check
     @character = Character.find_by_slug(params[:slug])
     erb :'characters/edit'
+  end
+
+  patch '/characters/:slug' do
+    @character = Character.find_by_slug(params[:slug])
+    # binding.pry
+    if @character.valid?
+      @character.update(params[:character])
+      @character.trait_ids = params[:trait_ids]
+      if !params[:traits].empty?
+        params[:traits].each do |trait|
+          if trait != ""
+            @character.traits << Trait.create(name: trait)
+          end
+        end
+      end
+      @character.save
+    else
+      flash[:message] = "All fields marked with an * are required to update a character."
+    end
+    redirect "/characters/#{@character.slug}"
   end
 
 

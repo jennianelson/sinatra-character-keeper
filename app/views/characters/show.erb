@@ -6,4 +6,6 @@
 <%@character.traits.each do |trait|%>
   <p> - <%=trait.name%></p>
 <%end%>
+<%if @user.id == @character.user.id%>
 <p><a href="/characters/<%=@character.slug%>/edit">Edit <%=@character.name%></a></p>
+<%end%>
