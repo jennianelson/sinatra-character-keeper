@@ -1,6 +1,6 @@
 
 <h1><%=@user.username.capitalize%>'s Saved Characters</h1>
-<p><a href="/characters/new">Add a new character</a> / <a href="/users/<%=@user.slug%>/traits">See your characters orgainzed by traits</a></p>
+<h3><a href="/characters/new">Add a new character</a> / <a href="/users/<%=@user.slug%>/traits">See your characters orgainzed by traits</a></h3>
 <br>
 <%@sorted_characters.each do |character|%>
   <h2><%=character.name%></h2>
