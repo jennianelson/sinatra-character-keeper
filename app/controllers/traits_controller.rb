@@ -5,7 +5,7 @@ class TraitsController < ApplicationController
     erb :"traits/index"
   end
 
-  get '/users/:slug/traits' do
+  get '/users/:slug/traits' do #belongs in users or traits controller?
     login_check
     @user = User.find(session[:user_id])
     traits = @user.characters.map {|c| c.traits}.flatten

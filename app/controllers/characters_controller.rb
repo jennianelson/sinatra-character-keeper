@@ -7,12 +7,13 @@ class CharactersController < ApplicationController
 
   post '/characters' do
     @character = Character.new(params[:character])
-    # if params[:character][:name] == Character.find_by(name: params[:character][:name])
-    #   flash[:message] = "You have already added this character. Consider editing instead."
-    #   redirect "/characters/new"
-    # end       #THIS CHECKS THE ENTIRE CHARACTER DB, NOT JUST THE USER'S COLLECTION
+    @user = User.find(session[:user_id])
+    if @user.characters.include?(params[:character][:name])
+      flash[:message] = "You have already added this character. Consider editing instead."
+      redirect '/characters/new'
+    end
     if @character.valid?
-      @character.user_id = session[:user_id]
+      @character.user = @user
       @character.trait_ids = params[:trait_ids]
       if !params[:traits].empty?
         params[:traits].each do |trait|

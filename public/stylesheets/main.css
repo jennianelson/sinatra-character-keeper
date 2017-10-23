@@ -11,9 +11,9 @@
     width: 100%;
   }
 
-  /* --- Welcome Page Styles --- */
-  body {
-    background-color: #79b622;
+
+  .container-fluid {
+    background-color: olivedrab;
     color: #79b622;
     font-family: Sans-Serif;
     line-height: 18px;
@@ -67,14 +67,6 @@
     float: right;
     padding: 2.08333333333%; /* 5px / 240px */
     width: 200px; /* 240px / 800px */
-  }
-
-  .navigation {
-    background: #eee;
-    border: 1px solid #ccc;
-    float: left;
-    padding: 2.083%;
-    width: 30%;
   }
 
   .sidebar ul {
