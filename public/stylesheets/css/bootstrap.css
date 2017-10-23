@@ -4516,6 +4516,7 @@ tbody.collapse.show {
 .jumbotron {
   padding: 1rem 1rem;
   margin-bottom: 2rem;
+  margin-top: 1rem;
   background-color: #f8f9fa;
   border-radius: 0.3rem;
 }
@@ -6816,7 +6817,7 @@ a.bg-dark:focus, a.bg-dark:hover {
   .sticky-top {
     position: -webkit-sticky;
     position: sticky;
-    top: 0;
+    top: 7px;
     z-index: 1020;
   }
 }
