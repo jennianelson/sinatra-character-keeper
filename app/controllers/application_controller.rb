@@ -16,7 +16,7 @@ class ApplicationController < Sinatra::Base
       user = User.find(session[:user_id])
       redirect "users/#{user.slug}"
     end
-    erb :welcome
+    erb :index
   end
 
   helpers do
