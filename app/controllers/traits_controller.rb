@@ -1,6 +1,7 @@
 class TraitsController < ApplicationController
 
   get '/traits' do
+    login_check
     @sorted_traits = Trait.all.sort_by {|t| t.name}
     erb :"traits/index"
   end
