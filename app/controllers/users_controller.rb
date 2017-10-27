@@ -2,8 +2,7 @@ class UsersController < ApplicationController
 
   get '/login' do
     if logged_in?
-      @user = User.find_by(session[:user_id])
-      redirect "/users/#{@user.slug}"
+      redirect "/users/#{current_user.slug}"
     end
     erb :'/users/login'
   end
@@ -20,8 +19,7 @@ class UsersController < ApplicationController
 
   get '/signup' do
     if logged_in?
-      user = User.find(session[:user_id])
-      redirect "/users/#{user.slug}"
+      redirect "/users/#{current_user.slug}"
     end
     erb :'/users/signup'
   end
@@ -33,8 +31,7 @@ class UsersController < ApplicationController
     end
     @user = User.new(params[:user])
     @user.password_confirmation = params[:confirm_password]
-    if @user.valid?
-      @user.save
+    if @user.valid? && @user.save
       session[:user_id] = @user.id
       redirect "/users/#{@user.slug}"
     else

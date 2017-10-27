@@ -6,10 +6,10 @@
 <%@character.traits.each do |trait|%>
   <p> - <%=trait.name%></p>
 <%end%>
-<%if @user.id == @character.user.id%>
-<p><a href="/characters/<%=@character.slug%>/edit">Edit</a></p>
-<form action="/characters/<%=@character.slug%>/delete" method="post">
-  <input type="hidden" name="_method" value="delete">
-  <input type="submit" name="submit" value="Delete Character">
-</form><br>
+<% if current_user == @character.user %>
+  <p><a href="/characters/<%=@character.slug%>/edit">Edit</a></p>
+  <form action="/characters/<%=@character.slug%>" method="post">
+    <input type="hidden" name="_method" value="delete">
+    <input type="submit" name="submit" value="Delete Character">
+  </form><br>
 <%end%>

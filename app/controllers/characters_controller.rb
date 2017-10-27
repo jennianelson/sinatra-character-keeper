@@ -31,7 +31,6 @@ class CharactersController < ApplicationController
 
   get '/characters' do
     login_check
-    # binding.pry
     @sorted_characters = Character.all.sort_by {|character| character.name}
     erb :'characters/index'
   end
@@ -46,12 +45,16 @@ class CharactersController < ApplicationController
   get '/characters/:slug/edit' do
     login_check
     @character = Character.find_by_slug(params[:slug])
-    erb :'characters/edit'
+    if current_user == @character.user
+      erb :'characters/edit'
+    else
+      flash[:message] = "You may not edit a character that you did not create."
+      redirect "/users/#{current_user.slug}"
+    end
   end
 
   patch '/characters/:slug' do
     @character = Character.find_by_slug(params[:slug])
-    # binding.pry
     if @character.valid?
       @character.update(params[:character])
       @character.trait_ids = params[:trait_ids]
@@ -69,11 +72,16 @@ class CharactersController < ApplicationController
     redirect "/characters/#{@character.slug}"
   end
 
-  delete '/characters/:slug/delete' do
+  delete '/characters/:slug' do
     login_check
     @character = Character.find_by_slug(params[:slug])
-    @character.destroy
-    erb :'/characters/delete'
+    if current_user == @character.user
+      @character.destroy
+      erb :'/characters/delete'
+    else
+      flash[:message] = "You may not delete a character you did not create."
+      redirect "/users/#{current_user.slug}"
+    end
   end
 
 

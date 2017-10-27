@@ -24,18 +24,18 @@
 
     <div class="navbar" id="navbarSupportedContent">
       <%if logged_in?%>
-        <%user = User.find(session[:user_id])%>
-      <ul class="navbar-nav mr-auto">
-        <li class="nav-item">
-          <a class="nav-link" href="/users/<%=user.slug%>">Your Characters</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="/characters">All Characters</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="/logout">Logout</a>
-        </li>
-      </ul>
+      <% user = current_user %>
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="/users/<%=user.slug%>">Your Characters</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/characters">All Characters</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/logout">Logout</a>
+          </li>
+        </ul>
       <%end%>
     </div>
     </nav>
